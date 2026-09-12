@@ -116,7 +116,7 @@ model Product {
   weightGrams     Int?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
-}
+cartItems  CartItem[]}
 
 model ProductImage {
   id        String  @id @default(cuid())
