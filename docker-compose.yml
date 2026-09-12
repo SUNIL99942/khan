@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: atoz
+      POSTGRES_USER: atoz
+      POSTGRES_PASSWORD: change-this-local-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - atoz_pgdata:/var/lib/postgresql/data
+volumes:
+  atoz_pgdata:

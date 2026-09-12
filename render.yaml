@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: atoz-shopping-web
+    runtime: node
+    buildCommand: npm install --no-audit --no-fund && npx prisma generate && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_MAP_TILE_URL
+        value: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
+      - key: NEXT_PUBLIC_MAP_ATTRIBUTION
+        value: © OpenStreetMap contributors

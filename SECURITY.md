@@ -1,0 +1,11 @@
+# Security checklist
+- Use a long random JWT_SECRET in production.
+- Use HTTPS only in production.
+- Keep DATABASE_URL, payment keys, Cloudinary secrets and shipping credentials out of Git.
+- Restrict admin routes through role checks.
+- Validate all external input with schemas.
+- Verify Razorpay signatures and webhook signatures.
+- Add rate limiting/WAF at the edge before launch.
+- Enable database backups and point-in-time recovery on production infrastructure.
+- Review privacy/terms/refund policy with the business/legal owner before launch.
+- Use a real transactional email/SMS provider for production notifications.

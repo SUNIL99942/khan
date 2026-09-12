@@ -1,0 +1,6 @@
+'use client';
+import {useEffect,useState} from 'react';
+import {MapContainer,TileLayer,Marker,useMapEvents} from 'react-leaflet';import L from 'leaflet';import 'leaflet/dist/leaflet.css';
+const icon=new L.Icon({iconUrl:'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',iconRetinaUrl:'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',shadowUrl:'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',iconSize:[25,41],iconAnchor:[12,41]});
+function Clicker({setPos}:{setPos:(p:[number,number])=>void}){useMapEvents({click(e){setPos([e.latlng.lat,e.latlng.lng])}});return null}
+export function MapPicker({value,onChange}:{value?:{lat:number;lng:number}|null;onChange:(p:{lat:number;lng:number})=>void}){const [pos,setPos]=useState<[number,number]>(value?[value.lat,value.lng]:[23.0225,72.5714]);useEffect(()=>{if(value)setPos([value.lat,value.lng])},[value]);return <div className="mapBox"><MapContainer center={pos} zoom={14} scrollWheelZoom><TileLayer url={process.env.NEXT_PUBLIC_MAP_TILE_URL||'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'} attribution={process.env.NEXT_PUBLIC_MAP_ATTRIBUTION||'© OpenStreetMap contributors'}/><Marker position={pos} icon={icon}/><Clicker setPos={p=>{setPos(p);onChange({lat:p[0],lng:p[1]})}}/></MapContainer></div>}

@@ -1,0 +1,3 @@
+Atoz Shopping — Full Build v1.0.0
+Production-oriented full-stack e-commerce build
+Visual preview: docs/website-preview.png

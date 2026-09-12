@@ -1,0 +1,1 @@
+import {trackShipment} from '@/lib/shipping';import {NextRequest} from 'next/server';export async function GET(req:NextRequest){const awb=req.nextUrl.searchParams.get('awb');if(!awb)return Response.json({error:'awb required'},{status:400});try{return Response.json(await trackShipment(awb))}catch(e:any){return Response.json({error:e.message||'Tracking unavailable'},{status:502})}}

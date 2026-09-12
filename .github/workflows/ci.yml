@@ -1,0 +1,18 @@
+name: Atoz Shopping CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - run: node scripts/verify-project.mjs
+      - run: npx prisma generate
+      - run: npm run build

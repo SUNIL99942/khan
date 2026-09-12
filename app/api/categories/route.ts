@@ -1,0 +1,1 @@
+import {prisma} from '@/lib/prisma';export async function GET(){try{return Response.json({categories:await prisma.category.findMany({where:{active:true},orderBy:{sortOrder:'asc'}})})}catch{return Response.json({categories:[]})}}

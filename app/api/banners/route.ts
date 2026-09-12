@@ -1,0 +1,1 @@
+import {prisma} from '@/lib/prisma';export async function GET(){try{const now=new Date();return Response.json({banners:await prisma.banner.findMany({where:{active:true,OR:[{startsAt:null},{startsAt:{lte:now}}],AND:[{OR:[{endsAt:null},{endsAt:{gte:now}}]}]},orderBy:{sortOrder:'asc'}})})}catch{return Response.json({banners:[]})}}
